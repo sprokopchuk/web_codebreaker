@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WEB Codebreaker</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+    <script src="/js/jquery-2.1.4.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hello, <%= user %>!</h1>
+      <p>Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker. The code-maker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6.</p>
+      <p>The code-breaker then gets some number of chances to break the code. In each turn, the code-breaker makes a guess of four numbers. The code-maker then marks the guess with up to four + and - signs.</p>
+      <p>A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers in the secret code and in the same position.</p>
+      <p>A - indicates a number match: one of the numbers in the guess is the same as one of the numbers in the secret code but in a different position.</p><br/>
+      <% if user? %>
+        <form method="post" action="/start_game">
+          <button class="btn btn-default" type="submit" >Begin a game</button>
+        </form>
+      <% else %>
+        <p><b>If you want  to play a game you must type your name.</b></p>
+        <form method="post" action="/enter_name">
+          <input name="user" type="text">
+          <input type="submit" value="Submit">
+        </form>
+      <% end %>
+    </div>
+  </body>
+</html>
