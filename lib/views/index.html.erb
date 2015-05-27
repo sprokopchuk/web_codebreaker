@@ -2,9 +2,8 @@
 <html>
   <head>
     <title>WEB Codebreaker</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-    <script src="/js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
   </head>
   <body>
     <div class="container">
@@ -13,11 +12,7 @@
       <p>The code-breaker then gets some number of chances to break the code. In each turn, the code-breaker makes a guess of four numbers. The code-maker then marks the guess with up to four + and - signs.</p>
       <p>A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers in the secret code and in the same position.</p>
       <p>A - indicates a number match: one of the numbers in the guess is the same as one of the numbers in the secret code but in a different position.</p><br/>
-      <% if user? %>
-        <form method="post" action="/start_game">
-          <button class="btn btn-default" type="submit" >Begin a game</button>
-        </form>
-      <% else %>
+      <% unless user? %>
         <p><b>If you want  to play a game you must type your name.</b></p>
         <form method="post" action="/enter_name">
           <input name="user" type="text">

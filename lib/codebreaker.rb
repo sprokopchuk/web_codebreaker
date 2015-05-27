@@ -2,11 +2,10 @@ require "codebreaker/version"
 require 'codebreaker/game'
 
 module Codebreaker
-	#Some bugs in class
+  #Some bugs in class
   class Codegame
     def initialize(name = "Player")
       @name = name
-      @res_game = "Lost"
       @game = Codebreaker::Game.new
     end
 

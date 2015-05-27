@@ -1,4 +1,6 @@
 require "./lib/racker"
 
-use Rack::Static, :urls => ["/stylesheets", "/js"], :root => "public"
-Rack::Handler::WEBrick.run Racker, :Port => 9191
+use Rack::Static, :urls => ["/css"], :root => "public"
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :secret => 'prokopchuk'
+run Racker

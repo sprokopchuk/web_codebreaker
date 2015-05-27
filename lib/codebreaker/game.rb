@@ -50,5 +50,6 @@ module Codebreaker
         @hint
       end
     end
+
   end
 end
