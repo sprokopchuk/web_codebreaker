@@ -27,7 +27,7 @@ class Racker
         response.redirect("/")
       end
     when "/guess_code"
-      unless @request.params["guess_code"] == "" || @request.params["guess_code"].size != 4
+      if game.valid_code? @request.params["guess_code"]
         game.guess(@request.params["guess_code"])
       end
       Rack::Response.new(render("game.html.erb"))
