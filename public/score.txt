@@ -1,2 +1,4 @@
 gofol|0|3453|Lose!
 gofol|0|4625|Lose!
+gofol|0|5624|Lose!
+gofol|0|1613|Lose!

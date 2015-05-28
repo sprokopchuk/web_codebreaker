@@ -6,6 +6,7 @@ module Codebreaker
     def start
       @secret_code, @arr_code, @revealed_nums, @attempts, @res, @hint = "", [], "", 5, "", true
       4.times { @secret_code << rand(1..6).to_s }
+      @arr_code = @secret_code.chars
       @res = "A game begins!"
     end
 
@@ -17,7 +18,6 @@ module Codebreaker
       @revealed_nums = ""
       @attempts -= 1
       code = code.to_s
-      @arr_code = @secret_code.chars
       a_code = code.chars
       a_code.each_index do |i|
         if a_code[i] == @arr_code[i]

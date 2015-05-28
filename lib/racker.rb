@@ -27,7 +27,7 @@ class Racker
         response.redirect("/")
       end
     when "/guess_code"
-      unless @request.params["guess_code"] == ""
+      unless @request.params["guess_code"] == "" || @request.params["guess_code"].size != 4
         game.guess(@request.params["guess_code"])
       end
       Rack::Response.new(render("game.html.erb"))
@@ -69,7 +69,7 @@ class Racker
   end
 
   def load_score
-    lines = File.readlines('score.txt')
+    lines = File.readlines('./public/score.txt')
     lines.each do |line|
       arr_player = line.split("|")
       puts "Your name: #{arr_player[0]} | Number of attempts: #{arr_player[1]} | Secret code: #{arr_player[2]} | Result of the game: #{arr_player[3].strip}" if arr_player[0] == user
@@ -77,8 +77,7 @@ class Racker
   end
 
   def save_score
-    puts res_game
-    f = File.exists?("score.txt") ? File.open("score.txt", "a") : File.new("score.txt", "a")
+    f = File.exists?("./public/score.txt") ? File.open("./public/score.txt", "a") : File.new("./public/score.txt", "a")
     f.write(res_game)
     "Score is saved!"
   end

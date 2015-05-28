@@ -3,14 +3,13 @@
   <head>
     <title>Codebreaker - Game begins!</title>
     <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
   </head>
   <body>
     <div class="container">
       <h1>Hello, <%= user %>!</h1>
       <% if user? %>
         <p>Secret code consists of four numbers between 1 and 6.</p>
-        <p>You have <%= game.attempts %> attempts and one <b>hint:<b> <%=  hint %></p>
+        <p>You have <%= game.attempts %> attempts and one <b>hint:<b> <%= hint %></p>
         <br/>
         <% if game.hint %>
           <form class="form-inline" method="post" action="/use_hint">
