@@ -1,14 +1,14 @@
-PATH
-  remote: .
+GIT
+  remote: git://github.com/sprokopchuk/codebreaker.git
+  revision: f6d29ab3dfe6d2934137f6a4dea4022ad4bfe8f2
   specs:
-    codebreaker (0.0.1)
+    codebreaker (0.0.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
     rack (1.6.1)
-    rake (10.4.2)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -29,9 +29,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.7)
   codebreaker!
   rack
-  rake (~> 10.0)
   rspec
   rspec-collection_matchers

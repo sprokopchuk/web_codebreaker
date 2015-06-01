@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in codebreaker.gemspec
-gem "rack"
 gem "rspec"
 gem 'rspec-collection_matchers'
+gem 'codebreaker', :git => "git://github.com/sprokopchuk/codebreaker.git"
+gem "rack"
 
-gemspec
+
 
 

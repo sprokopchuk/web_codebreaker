@@ -13,7 +13,7 @@ A - indicates a number match: one of the numbers in the guess is the same as one
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'codebreaker', :git => "git://github.com/sprokopchuk/codebreaker.git"
+gem 'codebreaker', :git => "git://github.com/sprokopchuk/web_codebreaker.git"
 ```
 
 And then execute:

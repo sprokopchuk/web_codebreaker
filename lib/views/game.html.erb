@@ -6,39 +6,47 @@
   </head>
   <body>
     <div class="container">
-      <h1>Hello, <%= user %>!</h1>
-      <% if user? %>
-        <p>Secret code consists of four numbers between 1 and 6.</p>
-        <p>You have <%= game.attempts %> attempts and one <b>hint:<b> <%= hint %></p>
-        <br/>
-        <% if game.hint %>
-          <form class="form-inline" method="post" action="/use_hint">
-            <button type="submit" class="btn btn-primary">Use a hint</button>
-          </form>
+      <div class="col-md-7">
+        <h1>Hello, <%= user %>!</h1>
+        <% if user? %>
+          <h3>Score</h3>
+          <table class="table">
+            <tr>
+              <th>Name</th>
+              <th>Number of attempts</th>
+              <th>Secret code</th>
+              <th>Result of the game</th>
+            </tr>
+            <%= load_score %>
+          </table>
+          <p>Secret code consists of four numbers between 1 and 6.</p>
+          <br/>
+          <p>You have <%= game.attempts %> attempts and one <b>hint:</b> <%= hint %></p>
+          <br/>
+          <% if game.hint %>
+            <a href="/use_hint" class="btn btn-primary">Use a hint</a>
+          <% end %>
+          <br/>
+          <br/>
+          <p><b>Result:</b> <%= game.revealed_nums %></p>
+          <% if game.revealed_nums == "++++" %>
+            <p>Congratulations! You win!</p>
+            <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
+            <a href="/save_score" class="btn btn-primary">Save score</a>
+          <% elsif game.res == "Lose!" %>
+            <p>Sorry! You Lose!</p>
+            <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
+            <a href="/save_score" class="btn btn-primary">Save score</a>
+          <% else %>
+            <form class="form-inline" method="post" action="/guess_code" id="guess_code">
+              <div class="form-group">
+                <input type="text" class="form-control" name="guess_code" placeholder="code">
+              </div>
+              <button type="submit" class="btn btn-primary">Guess code</button>
+            </form>
+          <% end %>
         <% end %>
-        <br/>
-        <p><b>Result:</b> <%= game.revealed_nums %></p>
-        <% if game.revealed_nums == "++++" %>
-          <p>Congratulations! You win!</p>
-          <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
-          <form class="form-inline" method="post" action="/save_score">
-            <button type="submit" class="btn btn-primary">Save score</button>
-          </form>
-        <% elsif game.res == "Lose!" %>
-          <p>Sorry! You Lose!</p>
-          <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
-          <form class="form-inline" method="post" action="/save_score">
-            <button type="submit" class="btn btn-primary">Save score</button>
-          </form>
-        <% else %>
-          <form class="form-inline" method="post" action="/guess_code" id="guess_code">
-            <div class="form-group">
-              <input type="text" class="form-control" name="guess_code" placeholder="code">
-            </div>
-            <button type="submit" class="btn btn-primary">Guess code</button>
-          </form>
-        <% end %>
-      <% end %>
+      </div>
     </div>
   </body>
 </html>
