@@ -25,21 +25,17 @@ class Racker
           response.redirect("/")
         end
       when "/guess_code"
-        if game.valid_code? @request.params["guess_code"]
-          game.guess(@request.params["guess_code"])
-        end
-        Rack::Response.new(render("game.html.erb"))
+        code = @request.params["guess_code"]
+        res = game.valid_code?(code) ? game.guess(code) : "No valid"
+        res << "|" + game.attempts.to_s
+        Rack::Response.new(res)
       when "/use_hint"
-        @request.session[:hint] = game.use_hint
-        Rack::Response.new(render("game.html.erb"))
+        Rack::Response.new(game.use_hint)
       when "/save_score"
         save_score
         Rack::Response.new do |response|
           response.redirect("/")
         end
-      when "/load_score"
-        load_score
-        Rack::Response.new(render("game.html.erb"))
       else Rack::Response.new("Not Found", 404)
     end
   end
@@ -67,13 +63,8 @@ class Racker
 
   def init_game
     @request.session[:game] = Codebreaker::Game.new
-    @request.session[:hint] = nil
     File.exists?("./public/score.dat") ?  @request.session[:score] = Marshal.load(File.open("./public/score.dat")) :  @request.session[:score] = []
     game.start
-  end
-
-  def hint
-    @request.session[:hint]
   end
 
   def res_game
@@ -96,7 +87,6 @@ class Racker
   def save_score(f = "./public/score.dat")
     score << res_game
     File.write(f, Marshal.dump(score))
-    "Score is saved!"
   end
 
 

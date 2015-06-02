@@ -3,6 +3,8 @@
   <head>
     <title>Codebreaker - Game begins!</title>
     <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+    <script type="text/javascript" src="/js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
   </head>
   <body>
     <div class="container">
@@ -20,31 +22,22 @@
             <%= load_score %>
           </table>
           <p>Secret code consists of four numbers between 1 and 6.</p>
-          <br/>
-          <p>You have <%= game.attempts %> attempts and one <b>hint:</b> <%= hint %></p>
-          <br/>
+          <p>You have <span id="attempts"><%= game.attempts %></span> attempts and one <b>hint</b>
           <% if game.hint %>
-            <a href="/use_hint" class="btn btn-primary">Use a hint</a>
+            <a href="/use_hint" id="hint" class="btn btn-primary">Use a hint</a>
           <% end %>
+          </p>
           <br/>
+          <form class="form-inline" method="post" action="/guess_code" id="guess_code">
+            <div class="form-group">
+              <input type="text" class="form-control" name="guess_code" placeholder="code">
+            </div>
+            <button type="submit" class="btn btn-primary">Guess code</button>
+          </form>
           <br/>
-          <p><b>Result:</b> <%= game.revealed_nums %></p>
-          <% if game.revealed_nums == "++++" %>
-            <p>Congratulations! You win!</p>
-            <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
-            <a href="/save_score" class="btn btn-primary">Save score</a>
-          <% elsif game.res == "Lose!" %>
-            <p>Sorry! You Lose!</p>
-            <a href="/" class="btn btn-primary">Restart game</a><br/><br/>
-            <a href="/save_score" class="btn btn-primary">Save score</a>
-          <% else %>
-            <form class="form-inline" method="post" action="/guess_code" id="guess_code">
-              <div class="form-group">
-                <input type="text" class="form-control" name="guess_code" placeholder="code">
-              </div>
-              <button type="submit" class="btn btn-primary">Guess code</button>
-            </form>
-          <% end %>
+          <b>Result:</b><br/>
+          <table id="result" class="table">
+          </table>
         <% end %>
       </div>
     </div>
