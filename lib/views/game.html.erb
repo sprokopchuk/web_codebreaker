@@ -11,6 +11,7 @@
       <div class="col-md-7">
         <h1>Hello, <%= user %>!</h1>
         <% if user? %>
+          <% if score.any? %>
           <h3>Score</h3>
           <table class="table">
             <tr>
@@ -21,6 +22,7 @@
             </tr>
             <%= load_score %>
           </table>
+          <% end %>
           <p>Secret code consists of four numbers between 1 and 6.</p>
           <p>You have <span id="attempts"><%= game.attempts %></span> attempts and one <b>hint</b>
           <% if game.hint %>
